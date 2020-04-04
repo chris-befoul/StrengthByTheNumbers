@@ -2,7 +2,7 @@ import random  # Imports random module.
 
 
 class Exercises:
-    """Represents collection of exercises labeled by bodypart."""
+    """Represents collection of exercises labeled by body part."""
 
     def __init__(self):
         self._chestPrim = ("Flat Bench", "Incline Bench", "Decline Bench", "Swiss Bar Bench", "DB Flat", "DB Incline",
@@ -44,9 +44,10 @@ class Exercises:
 class FullBody(Exercises):
     """Represents Full body workout."""
 
-    def __init__(self, days):
+    def __init__(self, days, weeks):
         """Initializes Client object with name, workouts, and days available."""
         super().__init__()
+        self._weeks = weeks  # Initializes length of program.
         self._days = days  # Initializes number of days client is available each week.
         self._workout_A = {}  # Initializes workout A as an empty dictionary.
         self._workout_B = {}  # Initializes workout B as an empty dictionary.
@@ -91,13 +92,32 @@ class FullBody(Exercises):
             print(self._workout_C)
             return self._workout_A, self._workout_B, self._workout_C
 
+    def create_schedule(self):
+        """Function that creates calendar with workout laid out for client."""
+        calendar = [["Rest"] * 7 for days in range(self._weeks)]  # Constructs calendar day by day week by week.
+        time = 0  # Time passed constant set to zero.
+        if self._days > 2:  # Checks if minimum days available is three.
+            while time < self._weeks:  # Loop that adds workouts in appropriate slots full length of program.
+                calendar[time][0] = "Workout A"  # Places first workout on Monday.
+                calendar[time][2] = "Workout B"  # Places seconds workout on Wednesday.
+                calendar[time][4] = "Workout C"  # Places third workout on Friday.
+                time += 1  # Skips to the next week.
+            return calendar, print(calendar)
+        elif self._days <= 2:  # Checks if maximum days available is two.
+            while time < self._weeks:  # Loop that adds workouts in appropriate slots full length of program.
+                calendar[time][1] = "Workout A"  # Places first workout on Tuesday.
+                calendar[time][3] = "Workout B"  # Places seconds workout on Thursday.
+                time += 1  # Skips to the next week.
+            return calendar, print(calendar)
+
 
 class UpperLower(Exercises):
     """Represents Upper Lower exercise program."""
 
-    def __init__(self):
+    def __init__(self, weeks):
         """Initializes Client object with name and workouts."""
         super().__init__()
+        self._weeks = weeks  # Initializes length of program.
         self._upperA = {}  # Initializes upper A workout as empty dictionary.
         self._lowerA = {}  # Initializes lower A workout as empty dictionary.
         self._upperB = {}  # Initializes upper B workout as empty dictionary.
@@ -135,13 +155,26 @@ class UpperLower(Exercises):
         print(self._lowerB)
         return self._upperA, self._lowerA, self._upperB, self._lowerB
 
+    def create_schedule(self):
+        """Function that creates calendar with workout laid out for client."""
+        calendar = [["Rest"] * 7 for days in range(self._weeks)]  # Constructs calendar day by day week by week.
+        time = 0  # Time passed constant set to zero.
+        while time < self._weeks:  # Loop that adds workouts in appropriate slots full length of program.
+            calendar[time][0] = "Upper A"  # Places first upper workout on Monday.
+            calendar[time][1] = "Lower A"  # Places first lower workout on Tuesday.
+            calendar[time][3] = "Upper B"  # Places second upper workout on Thursday.
+            calendar[time][4] = "Lower B"  # Places second lower workout on Friday.
+            time += 1  # Skips to the next week.
+        return calendar, print(calendar)
+
 
 class PPL(Exercises):
     """Represents Push, Pull, Legs, workout."""
 
-    def __init__(self):
+    def __init__(self, weeks):
         """Initializes Client object with name and workouts."""
         super().__init__()
+        self._weeks = weeks  # Initializes length of program.
         self._pushA = {}  # Initializes push A workout as empty dictionary.
         self._pullA = {}  # Initializes pull A workout as empty dictionary.
         self._legsA = {}  # Initializes legs A workout as empty dictionary.
@@ -187,13 +220,28 @@ class PPL(Exercises):
         print(self._legsB)
         return self._pushA, self._pullA, self._legsA, self._pushB, self._pullB, self._legsB
 
+    def create_schedule(self):
+        """Function that creates calendar with workout laid out for client."""
+        calendar = [["Rest"] * 7 for days in range(self._weeks)]  # Constructs calendar day by day week by week.
+        time = 0  # Time passed constant set to zero.
+        while time < self._weeks:  # Loop that adds workouts in appropriate slots full length of program.
+            calendar[time][0] = "Push A"  # Places first push workout on Monday.
+            calendar[time][1] = "Pull A"  # Places first pull workout on Tuesday.
+            calendar[time][2] = "Legs A"  # Places first leg workout on Wednesday.
+            calendar[time][3] = "Push B"  # Places second push workout on Thursday.
+            calendar[time][4] = "Pull B"  # Places second pull workout on Friday.
+            calendar[time][5] = "Legs B"  # Places second leg workout on Saturday.
+            time += 1  # Skips to the next week.
+        return calendar, print(calendar)
+
 
 class PHAT(Exercises):
     """Represents workout program for Power, Hypertrophy, Adaptive Training."""
 
-    def __init__(self):
+    def __init__(self, weeks):
         """Initializes Client object with name and workouts."""
         super().__init__()
+        self._weeks = weeks  # Initializes length of program.
         self._push = {}  # Initializes push workout as empty dictionary.
         self._legs = {}  # Initializes legs workout as empty dictionary.
         self._pull = {}  # Initializes pull workout as empty dictionary.
@@ -233,3 +281,17 @@ class PHAT(Exercises):
         print(self._lower)
         print(self._upper)
         return self._push, self._legs, self._pull, self._lower, self._upper
+
+    def create_schedule(self):
+        """Function that creates calendar with workout laid out for client."""
+        calendar = [["Rest"] * 7 for days in range(self._weeks)]  # Constructs calendar day by day week by week.
+        time = 0  # Time passed constant set to zero.
+        while time < self._weeks:  # Loop that adds workouts in appropriate slots full length of program.
+            calendar[time][0] = "Push"  # Places push workout on Monday.
+            calendar[time][1] = "Legs"  # Places leg workout on Tuesday.
+            calendar[time][3] = "Pull"  # Places pull workout on Thursday.
+            calendar[time][5] = "Lower"  # Places lower workout on Friday.
+            calendar[time][6] = "Upper"  # Places upper workout on Saturday.
+            time += 1  # Skips to the next week.
+        return calendar, print(calendar)
+
