@@ -5,6 +5,8 @@ class Exercises:
         self._HorzPrim = (
             "Flat Bench", "Incline Bench", "Decline Bench", "Swiss Bar Bench", "DB Flat", "DB Incline",
             "Machine Chest Press", "One Arm Flat DB", "One Arm Incline DB")  # Primary exercises for chest.
+        self._ChestIso = (
+            "Flat Fly", "Incline Fly", "Decline Fly", "High Cable Crossover", "Mid-Level Cable Crossover", "Low Cable Crossover")
         self._VertPull = (
             "Pull Ups", "Chin Ups", "Underhand Pulldown", "Lat Pulldown",
             "Neutral Grip Pulldown", "Single Arm Pulldown", "High Row")  # Exercises for lats.

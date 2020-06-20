@@ -1,6 +1,7 @@
 from ExerciseOptions import Exercises
 import random
 
+
 class Exercise:
 
     def __init__(self, exercise):
@@ -15,9 +16,12 @@ class Exercise:
 
     def __str__(self):
         """Returns string format of node."""
-        return '(' + str(self.exercise) + ', Weight: ' + str(self.intensity) + ', Sets: ' + str(self.sets) + ', RIR: ' + str(self.RIR) + ', Volume: '+ str(self.Volume) + ', RPE: ' + str(self.RPE) + ', Week: ' + str(self.Week) + ')'
+        return '(' + str(self.exercise) + ', Weight: ' + str(self.intensity) + ', Sets: ' + str(
+            self.sets) + ', RIR: ' + str(self.RIR) + ', Volume: ' + str(self.Volume) + ', RPE: ' + str(
+            self.RPE) + ', Week: ' + str(self.Week) + ')'
 
     __repr__ = __str__
+
 
 class Days(Exercises):
 
@@ -73,10 +77,10 @@ class Days(Exercises):
             if days == day:
                 for work in self._week[days]:
                     for reps in range(1, work.sets + 1):
-                        work.Reps.append(int(input("Number of reps performed for set " + str(reps) + " of " + work.exercise + ": ")))
+                        work.Reps.append(
+                            int(input("Number of reps performed for set " + str(reps) + " of " + work.exercise + ": ")))
                     work.RPE = int(input("Enter RPE experienced on last set on a scale of 0-4: "))
                 return
-
 
     def weekly_update(self):
         for days in self._week:
@@ -122,17 +126,18 @@ class Days(Exercises):
         return
 
 
-m = Days()
-m.generate_workout()
-print(m._week["day1"])
-print(m._week["day2"])
-print(m._week["day3"])
-print(m._week["day4"])
-m.starting_weight()
-print(m._week["day1"])
-print(m._week["day2"])
-print(m._week["day3"])
-print(m._week["day4"])
-m.daily_update("day1")
-m.weekly_update()
-print(m._week)
+if __name__ == '__main__':
+    m = Days()
+    m.generate_workout()
+    print(m._week["day1"])
+    print(m._week["day2"])
+    print(m._week["day3"])
+    print(m._week["day4"])
+    m.starting_weight()
+    print(m._week["day1"])
+    print(m._week["day2"])
+    print(m._week["day3"])
+    print(m._week["day4"])
+    m.daily_update("day1")
+    m.weekly_update()
+    print(m._week)
